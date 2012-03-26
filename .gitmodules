@@ -1,0 +1,3 @@
+[submodule "Library/Reveal"]
+	path = Library/Reveal
+	url = git://github.com/radmiraal/reveal.git
