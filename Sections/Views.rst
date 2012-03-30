@@ -2,7 +2,20 @@
 Views
 =====
 
-Chapter
-=======
+Handling Events
+===============
 
-Foo
+Manually Managed Views with Ember.ContainerView
+===============================================
+
+
+Render Pipeline
+===============
+
+
+Customizing the HTML Element
+============================
+
+
+Attribute Bindings on a View
+============================

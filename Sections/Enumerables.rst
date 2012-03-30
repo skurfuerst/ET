@@ -2,7 +2,7 @@
 Enumerables
 ===========
 
-Chapter
-=======
+What Are Enumerables?
+=====================
 
-Foo
+

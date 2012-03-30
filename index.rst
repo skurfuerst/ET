@@ -8,3 +8,4 @@
 	Sections/Views
 	Sections/Enumarables
 	Sections/EmberData
+	Sections/Sources

@@ -2,6 +2,11 @@
 Object Model
 ============
 
+
+The Ember Object Model
+======================
+
+
 Subclassing
 ===========
 
@@ -13,20 +18,32 @@ Ember.Object.
 	:language: javascript
 	:linenos:
 
-Foo
-===
+Reopening Classes and Instances
+===============================
 
-Sub Section
------------
 
-Some content
 
-Bar
----
 
-Some other content
+Computed Properties (Getters)
+============================
 
-Baz
-===
+
+
+Computed Properties (Setters)
+=============================
+
+
+
+Observers
+=========
+
+
+
+Bindings
+========
+
+
+What Do I Use When?
+===================
 
 Content

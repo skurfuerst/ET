@@ -2,7 +2,5 @@
 Application
 ===========
 
-Chapter
-=======
-
-Foo
+Creating a Namespace
+====================

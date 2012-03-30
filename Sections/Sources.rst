@@ -1,8 +1,8 @@
 ==========
-Ember Data
+Sources
 ==========
 
-Ember Data
+Sources
 ==========
 
 Foo
