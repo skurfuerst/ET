@@ -1,0 +1,140 @@
+{#
+basic/layout.html
+~~~~~~~~~~~~~~~~~
+
+Master layout template for Sphinx themes.
+
+:copyright: Copyright 2007-2011 by the Sphinx team, see AUTHORS.
+:license: BSD, see LICENSE for details.
+#}
+{%- block doctype -%}<!DOCTYPE html>{%- endblock %}
+{%- set reldelim1 = reldelim1 is not defined and ' &raquo;' or reldelim1 %}
+{%- set reldelim2 = reldelim2 is not defined and ' |' or reldelim2 %}
+{%- set render_sidebar = (not embedded) and (not theme_nosidebar|tobool) and
+(sidebars != []) %}
+{%- set url_root = pathto('', 1) %}
+{# XXX necessary? #}
+{%- if url_root == '#' %}{% set url_root = '' %}{% endif %}
+{%- if not embedded and docstitle %}
+{%- set titlesuffix = " &mdash; "|safe + docstitle|e %}
+{%- else %}
+{%- set titlesuffix = "" %}
+{%- endif %}
+
+{%- macro css() %}
+	<link href='http://fonts.googleapis.com/css?family=Share:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{{ pathto('_static/RevealJS/css/reset.css', 1) }}">
+	<link rel="stylesheet" href="{{ pathto('_static/RevealJS/css/main.css', 1) }}">
+
+	<link rel="stylesheet" href="{{ pathto('_static/RevealJS/lib/zenburn.css', 1) }}">
+
+	<link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css"/>
+	<link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css"/>
+
+	{%- for cssfile in css_files %}
+		<link rel="stylesheet" href="{{ pathto(cssfile, 1) }}" type="text/css"/>
+	{%- endfor %}
+{%- endmacro %}
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset={{ encoding }}"/>
+	{{ metatags }}
+	{%- block htmltitle %}
+	<title>{{ title|striptags|e }}{{ titlesuffix }}</title>
+	{%- endblock %}
+	{{ css() }}
+	{%- if not embedded %}
+		{%- if favicon %}
+		<link rel="shortcut icon" href="{{ pathto('_static/' + favicon, 1) }}"/>
+		{%- endif %}
+	{%- endif %}
+	{%- block linktags %}
+		{%- if hasdoc('about') %}
+		<link rel="author" title="{{ _('About these documents') }}" href="{{ pathto('about') }}"/>
+		{%- endif %}
+		{%- if hasdoc('genindex') %}
+		<link rel="index" title="{{ _('Index') }}" href="{{ pathto('genindex') }}"/>
+		{%- endif %}
+		{%- if hasdoc('copyright') %}
+		<link rel="copyright" title="{{ _('Copyright') }}" href="{{ pathto('copyright') }}"/>
+		{%- endif %}
+		<link rel="top" title="{{ docstitle|e }}" href="{{ pathto('index') }}"/>
+
+	{%- endblock %}
+	{%- block extrahead %} {% endblock %}
+</head>
+<body>
+
+
+{%- block content %}
+
+	{%- block document %}
+	<div id="reveal">
+		{%- if render_sidebar %}
+			{%- endif %}
+				{% block body %} {% endblock %}
+			{%- if render_sidebar %}
+		{%- endif %}
+
+
+		<!-- The navigational controls UI -->
+		<aside class="controls">
+			<a class="left" href="#">&#x25C4;</a>
+			<a class="right" href="#">&#x25BA;</a>
+			<a class="up" href="#">&#x25B2;</a>
+			<a class="down" href="#">&#x25BC;</a>
+		</aside>
+
+		<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+		<div class="progress"><span></span></div>
+
+	</div>
+	{%- endblock %}
+
+{%- endblock %}
+
+<script src="{{ pathto('_static/RevealJS/js/reveal.js', 1) }}"></script>
+
+<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+<script src="{{ pathto('_static/RevealJS/lib/highlight.js', 1) }}"></script>
+<script src="{{ pathto('_static/RevealJS/lib/classList.js', 1) }}"></script>
+
+<script>
+	// Parse the query string into a key/value object
+	var query = {};
+	location.search.replace(/[A-Z0-9]+?=(\w*)/gi, function (a) {
+		query[ a.split('=').shift() ] = a.split('=').pop();
+	});
+
+	document.getElementsByClassName('toctree-wrapper')[0].className += ' slides';
+
+	Reveal.initialize({
+		// Display controls in the bottom right corner
+		controls:true,
+
+		// Display a presentation progress bar
+		progress:true,
+
+		// If true; each slide will be pushed to the browser history
+		history:true,
+
+		// Flags if mouse wheel navigation should be enabled
+		mouseWheel:true,
+
+		// Apply a 3D roll to links on hover
+		rollingLinks:true,
+
+		// UI style
+		theme:query.theme || 'default', // default/neon
+
+		// Transition style
+		transition:query.transition || 'default' // default/cube/page/concave/linear(2d)
+	});
+
+	hljs.initHighlightingOnLoad();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+html, body {
+	font-family: 'Share', arial, verdana;
+}
+
+#reveal h1,
+#reveal h2,
+#reveal h3,
+#reveal h4 {
+	font-family: 'Share', arial, verdana;
+}
+
+#reveal h1 {
+	display: none;
+}
