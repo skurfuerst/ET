@@ -95,6 +95,7 @@ Master layout template for Sphinx themes.
 
 {%- endblock %}
 
+<script src="{{ pathto('_static/jquery-1.7.1.min.js', 1) }}"></script>
 <script src="{{ pathto('_static/RevealJS/js/reveal.js', 1) }}"></script>
 
 <!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
@@ -134,6 +135,55 @@ Master layout template for Sphinx themes.
 	});
 
 	hljs.initHighlightingOnLoad();
+
+//	$(document).ready(function() {
+//		var adjustedCode, countNumberOfLeadingTabs, line, tabCharacter, _i, _len, _ref;
+//		tabCharacter = String.fromCharCode(9);
+//		countNumberOfLeadingTabs = function(line) {
+//			var character, numberOfLeadingTabs, _i, _len;
+//			numberOfLeadingTabs = 0;
+//			for (_i = 0, _len = line.length; _i < _len; _i++) {
+//				character = line[_i];
+//				if (character === tabCharacter) {
+//					numberOfLeadingTabs++;
+//				} else {
+//					return numberOfLeadingTabs;
+//				}
+//			}
+//			return numberOfLeadingTabs;
+//		};
+//		$('code').each(function() {
+//			var code, line, numberOfLeadingTabs, tabs, _i, _len, _ref, _results;
+//			code = $(this).html();
+//			numberOfLeadingTabs = Number.MAX_VALUE;
+//			_ref = code.split("\n");
+//			_results = [];
+//			for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+//				line = _ref[_i];
+//				if (line.match(/^\w*$/)) continue;
+//				tabs = countNumberOfLeadingTabs(line);
+//				if (tabs < numberOfLeadingTabs) {
+//					_results.push(numberOfLeadingTabs = tabs);
+//				} else {
+//					_results.push(void 0);
+//				}
+//			}
+//			adjustedCode = [];
+//			_ref = code.split("\n");
+//			for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+//				line = _ref[_i];
+//				adjustedCode.push(line.slice(numberOfLeadingTabs, line.length).replace(tabCharacter, "   "));
+//			}
+//			if (adjustedCode[0].match(/^\w*$/)) adjustedCode.shift();
+//			$(this).html(adjustedCode.join("\n"));
+//		});
+//
+//		$('code').attr('contenteditable', 'true');
+//		if (window.location.search === '?debug') {
+//			return $('.fragment').removeClass('fragment');
+//		}
+//	});
+
 //	$(document).ready(function() {
 //		$('.literal-block').each(function(i, e) {hljs.highlightBlock(e, '    ')});
 //	});

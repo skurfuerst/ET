@@ -15,6 +15,19 @@ class HTML5Translator(BaseTranslator):
 		self.section_level -= 1
 		self.body.append('</section>\n')
 
+	def visit_literal_block(self, node):
+		self.body.append('<pre class="literal-block"><code>\n')
+	def depart_literal_block(self, node):
+		self.body.append('\n</code></pre>\n')
+
+	def visit_list_item(self, node):
+		self.body.append(self.starttag(node, 'li', CLASS='fragment'))
+		if len(node):
+			node[0]['classes'].append('first')
+
+	def depart_list_item(self, node):
+		self.body.append('</li>\n')
+
 	def unknown_visit(self, node):
 		self.document.reporter.warning('Ignoring node: %s' % node.tagname)
 	def unknown_departure(self, node): pass
