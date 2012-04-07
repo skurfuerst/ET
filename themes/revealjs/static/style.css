@@ -7,8 +7,31 @@ html, body {
 #reveal h3,
 #reveal h4 {
 	font-family: 'Share', arial;
+	color: #e87c0c;
 }
 
 #reveal h1 {
 	display: none;
+}
+
+#reveal h3 {
+	margin-top: 40px;
+}
+
+dd {
+	padding: 20px 0px 20px 40px;
+}
+
+code {
+	font-size: 1.3em;
+	line-height: 130%;
+}
+
+cite {
+	font-family: monospace;
+	color: #e87c0c;
+}
+
+section > p {
+	text-align: left;
 }

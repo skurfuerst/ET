@@ -15,6 +15,13 @@ class HTML5Translator(BaseTranslator):
 		self.section_level -= 1
 		self.body.append('</section>\n')
 
+	def visit_paragraph(self, node):
+		if self.should_be_compact_paragraph(node):
+			self.context.append('')
+		else:
+			self.body.append(self.starttag(node, 'p', ''))
+			self.context.append('</p>\n')
+
 	def visit_literal_block(self, node):
 		self.body.append('<pre class="literal-block"><code>\n')
 	def depart_literal_block(self, node):
@@ -27,6 +34,10 @@ class HTML5Translator(BaseTranslator):
 
 	def depart_list_item(self, node):
 		self.body.append('</li>\n')
+
+	def depart_bullet_list(self, node):
+		self.compact_simple, self.compact_p = self.context.pop()
+		self.body.append('</ul><span class="fragment">&nbsp;</span>\n')
 
 	def unknown_visit(self, node):
 		self.document.reporter.warning('Ignoring node: %s' % node.tagname)
