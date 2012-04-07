@@ -1,0 +1,11 @@
+.navbar .container {
+	min-height: 40px;
+}
+
+body > .container {
+	margin-top: 80px;
+}
+
+.span9 h4 {
+	padding: 10px 0px 5px 0px;
+}

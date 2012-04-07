@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ember.js</title>
+
+		<link rel="stylesheet" href="lib/google-code-prettify/prettify.css" />
+		<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="style.css" />
+
+		<script type="text/x-handlebars" data-template-name="example">
+			<div class="row">
+				<div class="span3">
+					<h3>{{title}}</h3>
+					<p>{{description}}</p>
+				</div>
+				<div class="span8 well">
+					<h4>Output</h4>
+					<span class="example"></span>
+				</div>
+			</div>
+		</script>
+
+		<script type="text/x-handlebars" data-template-name="handlebars-basics">
+			My name is {{name}}.
+		</script>
+
+		<script type="text/x-handlebars" data-template-name="handlebars-unbound">
+			My car is <span class="{{unbound color}}">{{color}}</span>
+		</script>
+
+	</head>
+	<body>
+
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container"></div>
+			</div>
+		</div>
+
+		<div class="container">
+			<section id="examples"></section>
+		</div>
+
+		<script src="lib/jquery-1.7.1.min.js"></script>
+		<script>
+			var templates = {};
+			$('script[type="text/x-handlebars"]').each(function() {
+				templates[$(this).attr('data-template-name')] = $(this).html();
+			});
+		</script>
+		<script src="lib/google-code-prettify/prettify.js"></script>
+		<script src="lib/ember-0.9.6.min.js"></script>
+		<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+		<script src="app.js"></script>
+		<script src="namespaces.js"></script>
+		<script src="example.js"></script>
+		<script src="examples/handlebars/basics.js"></script>
+		<script src="examples/handlebars/unbound.js"></script>
+
+		<script type="text/javascript">
+			App.View.HandlebarBasics.create().appendTo('#examples');
+			App.View.HandlebarUnbound.create().appendTo('#examples');
+			prettyPrint();
+		</script>
+
+	</body>
+</html>

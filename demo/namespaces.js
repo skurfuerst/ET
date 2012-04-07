@@ -1,0 +1,1 @@
+App.View = App.View || {};
