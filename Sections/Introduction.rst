@@ -5,42 +5,81 @@ Introduction
 Ember.js Tutorial
 =================
 
-
 Introduction
 ============
+
+* Rens Admiraal
+* Markus Goldbeck
 
 What is Ember.js?
 =================
 
 * Ember.js formerly called SproutCore 2.0
+* a JavaScript framework for creating web applications
+	* eliminate boilerplate
+	* provide architecture
 * based on jQuery
-* Ember is a JavaScript framework for creating ambitious web applications that eliminates boilerplate and provides a standard application architecture.
-* It helps to manage the changes in the view and the DOM, when the underlying objects change
-* Makes it easy to divide a application into MVC
-* Uses the same REST API as your native App
 
-
-Ember.js at a Glance
+How is it different?
 ====================
 
-Content
+* majority of application logic on client side
+	* loads all needed templates / objects on page load
+	* thus reducing server communication
+
+* it helps to manage the changes in the view and the DOM, when the underlying objects change
+* makes it easy to divide a application into MVC
+
+Some key features
+=================
+
+* bindings
+* computed properties
+* observers
+* auto-updating templates
+* object model
 
 Bindings
 ========
 
-Use bindings to keep properties between two different objects in sync. You just declare a binding once, and Ember will make sure changes get propagated in either direction.
+Use bindings to keep your data and UI in sync by automatically propagating changes to
+objects or your view. ::
 
+	Demo = Ember.Object.create({
+		applicationNameBinding: 'App.name'
+	}
+
+One-way binding
+---------------
+
+By default bindings are 2 way, but they can be configured to be 1 way ::
+
+	Demo = Ember.Object.create({
+		applicationNameBinding: Ember.Binding.oneWay('App.name')
+	}
 
 Computed Properties
 ===================
 
-Content
+Computed properties are functions, handled like it is a property of the object. ::
 
-* tat
-* tat
+	Demo = Ember.Object.create({
+		firstName: 'Friendly',
+		lastName: 'Ghost',
+		fullName: function() {
+			return this.get('firstName') + ' ' + this.getLastName();
+		}.property('firstName', 'lastName').cacheable();
+	}
 
+When using computed properties it's highly recommended to use the `.cacheable()` method.
 
 Auto-updating Templates
 =======================
 
-Content
+Ember uses a templating library named `Handlebars` to add data to the DOM. ::
+
+	<script type="text/x-handlebars">
+		My app is named {{App.name}}
+	</script>
+
+Those templates are bindings-aware.
