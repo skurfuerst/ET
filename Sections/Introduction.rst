@@ -58,7 +58,7 @@ objects or your view.
 One-way binding
 ---------------
 
-By default bindings are 2 way, but they can be configured to be 1 way ::
+By default bindings are two-way, but they can be configured to be one-way ::
 
 	MyApp.country = Ember.Object.create({
 		presidentNameBinding: Ember.Binding.oneWay('MyApp.president.name')
@@ -82,7 +82,8 @@ When using computed properties it's highly recommended to use the `.cacheable()`
 Auto-updating Templates
 =======================
 
-Ember uses a templating library named `Handlebars` to add data to the DOM. ::
+Ember uses a templating library named `Handlebars <http://handlebarsjs.com/>`_ to add data
+to the DOM. ::
 
 	<script type="text/x-handlebars">
 		The President of the United States is {{MyApp.president.fullName}}.
