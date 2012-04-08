@@ -11,7 +11,29 @@ App.View.Example = Ember.View.extend({
 		var content = this.get('content');
 		content.didInsertElement = function() {
 
-			$('<h4 />', {text: 'JavaScript'}).appendTo(this.$());
+			$('<pre />', {
+				'class': 'prettyprint lang-html linenums',
+				text: this.$().html().trim()
+			}).appendTo(this.$());
+
+			$('<h4 />', {
+				text: 'Output'
+			}).prependTo(this.$());
+
+			if (templates[content.templateName]) {
+
+				$('<pre/>', {
+					text: templates[content.templateName].trim(),
+					'class': 'prettyprint lang-html linenums'
+				}).prependTo(this.$());
+
+				$('<h4 />', {
+					text: 'Handlebars source'
+				}).prependTo(this.$());
+
+			}
+
+
 			$('<pre />', {
 				text: [
 					'MyView = Ember.View.extend(',
@@ -19,18 +41,10 @@ App.View.Example = Ember.View.extend({
 					');'
 				].join(''),
 				'class': 'prettyprint lang-javascript linenums'
-			}).appendTo(this.$());
+			}).prependTo(this.$());
+			$('<h4 />', {text: 'JavaScript'}).prependTo(this.$());
 
-			if (templates[content.templateName]) {
-				$('<h4 />', {
-					text: 'Handlebars source'
-				}).appendTo(this.$());
 
-				$('<pre/>', {
-					text: templates[content.templateName].trim(),
-					'class': 'prettyprint lang-html linenums'
-				}).appendTo(this.$());
-			}
 
 			prettyPrint();
 		}
