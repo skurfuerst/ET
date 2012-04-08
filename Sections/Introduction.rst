@@ -58,7 +58,9 @@ objects or your view.
 One-way binding
 ---------------
 
-By default bindings are two-way, but they can be configured to be one-way ::
+By default bindings are two-way, but they can be configured to be one-way
+
+::
 
 	MyApp.country = Ember.Object.create({
 		presidentNameBinding: Ember.Binding.oneWay('MyApp.president.name')
@@ -67,7 +69,9 @@ By default bindings are two-way, but they can be configured to be one-way ::
 Computed Properties
 ===================
 
-Computed properties are functions, handled like it is a property of the object. ::
+Computed properties are functions, handled like it is a property of the object.
+
+::
 
 	MyApp.dateHandler = Ember.Object.create({
 		currentDate: function() {
@@ -83,7 +87,9 @@ Auto-updating Templates
 =======================
 
 Ember uses a templating library named `Handlebars <http://handlebarsjs.com/>`_ to add data
-to the DOM. ::
+to the DOM.
+
+::
 
 	<script type="text/x-handlebars">
 		The President of the United States is {{MyApp.president.fullName}}.

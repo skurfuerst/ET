@@ -70,23 +70,35 @@ Reopening Classes and Instances
 ===============================
 
 Use `reopen()` it's possible to change instances, like adding or overwriting
-properties / methods.
+properties / methods and call `this._super()`.
 
 ::
 
 	Person.reopen({
 		isPerson: true
 	});
+	Person.create().get('isPerson'); // true
 
-	Person.create().get('isPerson');
 
-Use `reopenClass()` to extend the class ::
+::
+
+	Person.reopen({
+		say: function(thing) {
+			this._super(thing + "!");
+		}
+	});
+
+Use `reopenClass()` to extend the class
+
+::
 
 	Person.reopenClass({
 		createMan: function() {
 			return Person.create({isMan: true});
 		}
 	}
+	Person.createMan().get('isMan') // true
+
 
 Computed Properties (Getter only)
 =================================
@@ -115,6 +127,10 @@ Computed Properties (Getter only)
 Getter without Embers prototype extensions
 ==========================================
 
+* property method defines the function as a computed property
+* defines its dependencies
+* Those dependencies will come into play later for bindings and observers.
+
 ::
 
 	Person = Ember.Object.extend({
@@ -128,6 +144,8 @@ Getter without Embers prototype extensions
 			return firstName + ' ' + lastName;
 		}).property('firstName', 'lastName')
 	});
+
+
 
 Computed Properties (Setters)
 =============================
@@ -153,9 +171,15 @@ Computed Properties (Setters)
 			}
 		}).property('firstName', 'lastName')
 	});
+	var person = Person.create();
+	person.set('fullName', "Peter Wagenet");
+	person.get('firstName') // Peter
+	person.get('lastName') // Wagenet
 
 Observers
 =========
+
+observe an object by using `addObserver()`
 
 ::
 
@@ -174,6 +198,8 @@ Observers
 Observe array changes
 =====================
 
+::
+
 	App.todosController = Ember.Object.create({
 		todos: [
 			Ember.Object.create({ isDone: false })
@@ -185,17 +211,30 @@ Observe array changes
 		}.property('todos.@each.isDone')
 	});
 
-Using the `observes()` helper
------------------------------
+* `@each` as special key instructs Ember to update bindings and fire observers when:
+	* `isDone` is changed
+	* item is added to the array or removed
+	* the todos property of the controller is moved to a different array
+
+
+Example for observing array changes
+===================================
 
 ::
 
-	Person = Ember.Object.extend({
-		firstName: null,
-		firstNameObserver: function() {
-			console.log('firstName changed');
-		}.observes('firstName')
-	}
+	var todos = App.todosController.get('todos');
+	var todo = todos.objectAt(1);
+	todo.set('isDone', true);
+
+	App.todosController.get('remaining');
+	// 0
+
+	todo = Ember.Object.create({ isDone: false });
+	todos.pushObject(todo);
+
+	App.todosController.get('remaining');
+	// 1
+
 
 Bindings
 ========
@@ -215,6 +254,39 @@ Bindings
 	App.husband.set('householdIncome', 90000);
 	App.wife.get('householdIncome');
 
+
+* bindings create a `link` between two properties
+* bindings can connect properties of the same, or across two different objects
+* can be used with any object
+* are updated after the application code has finished
+
+
+
+One-Way Bindings
+================
+
+
+::
+
+	App.user = Ember.Object.create({
+		fullName: "Kara Gates"
+	});
+
+	App.userView = Ember.View.create({
+		userNameBinding: Ember.Binding.oneWay('App.user.fullName')
+	});
+
+	// Changing the name of the user object changes
+	// the value on the view.
+	App.user.set('fullName', "Krang Gates");
+	// App.userView.userName will become "Krang Gates"
+
+	// ...but changes to the view don't make it back to
+	// the object.
+	App.userView.set('userName', "Truckasaurus Gates");
+	App.user.get('fullName'); // "Krang Gates"
+
+* one-way bindings used for performance improvements
 
 What Do I Use When?
 ===================
