@@ -215,7 +215,7 @@ if urgent is true the class will be added, otherwise it will be removed
 Handling Events with {{action}}
 ===============================
 
-attaching an `click` event to `edit()
+attaching an `click` event to `edit()`
 
 ::
 
@@ -381,3 +381,12 @@ Writing Custom Helpers
 ::
 
 	<span class="highlight">Peter</span>
+
+Included Views
+==============
+
+* Ember.Button
+* Ember.Checkbox
+* Ember.TextField
+* Ember.Select
+* Ember.TextArea
