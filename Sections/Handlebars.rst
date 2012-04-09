@@ -381,3 +381,12 @@ Writing Custom Helpers
 ::
 
 	<span class="highlight">Peter</span>
+
+Included Views
+==============
+
+* Ember.Button
+* Ember.Checkbox
+* Ember.TextField
+* Ember.Select
+* Ember.TextArea
