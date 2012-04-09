@@ -6,6 +6,6 @@
 	Sections/Application
 	Sections/Handlebars
 	Sections/Views
-	Sections/Enumarables
+	Sections/Enumerables
 	Sections/EmberData
 	Sections/Sources
