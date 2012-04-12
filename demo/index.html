@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="style.css" />
 
-		<script type="text/x-handlebars" data-template-name="example">
+		<script type="text/x-handlebars" data-template-name="handlebars-base-example">
 			<div class="row">
 				<div class="span3">
 					<h3>{{title}}</h3>
@@ -20,11 +20,19 @@
 		</script>
 
 		<script type="text/x-handlebars" data-template-name="handlebars-basics">
-			My name is {{name}}.
+My name is {{name}}.
 		</script>
 
 		<script type="text/x-handlebars" data-template-name="handlebars-unbound">
-			My car is <span class="{{unbound color}}">{{color}}</span>
+My car is <span class="{{unbound color}}">{{color}}</span>
+		</script>
+
+		<script type="text/x-handlebars" data-template-name="handlebars-if_else">
+{{#if person}}
+	Welcome back, <b>{{person.firstName}} {{person.lastName}}</b>!
+{{else}}
+	Please log in.
+{{/if}}
 		</script>
 
 	</head>
@@ -55,10 +63,12 @@
 		<script src="example.js"></script>
 		<script src="examples/handlebars/basics.js"></script>
 		<script src="examples/handlebars/unbound.js"></script>
+		<script src="examples/handlebars/if_else.js"></script>
 
 		<script type="text/javascript">
 			App.View.HandlebarBasics.create().appendTo('#examples');
 			App.View.HandlebarUnbound.create().appendTo('#examples');
+			App.View.HandlebarIfElse.create().appendTo('#examples');
 			prettyPrint();
 		</script>
 

@@ -176,7 +176,7 @@ If you want to find out whether at least one item in an Enumerable matches some 
 	});
 	// returns true
 
-Just like the filtering methods, the every and some methods have analogous `everyProperty()` and `someProperty() methods.
+Just like the filtering methods, the every and some methods have analogous `everyProperty()` and `someProperty()` methods.
 
 ::
 

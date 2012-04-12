@@ -247,7 +247,7 @@ Building a View Hierarchy
 =========================
 
 * till now templates only for single view
-* target is creating a hierarchy of views to encapsulte different areas on a page
+* target is creating a hierarchy of views to encapsulate different areas on a page
 	* CRUD actions
 * seperating views for handling their events and maintaining the properties
 

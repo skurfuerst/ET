@@ -1,5 +1,5 @@
 App.View.Example = Ember.View.extend({
-	templateName: 'example',
+	templateName: 'handlebars-base-example',
 
 	title: null,
 	description: null,
